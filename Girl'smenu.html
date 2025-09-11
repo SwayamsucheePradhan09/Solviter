@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solviter-BiteBuddy</title>
+  <link rel="icon" type="image/png" sizes="128x128" href="favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    const theme = localStorage.getItem("theme") || "light";
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+   <style>
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      padding: 30px 10px;
+    }
+  
+    .stat-item {
+      background: #EEFBFF;
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 10px 10px 25px #bebebe, -10px -10px 25px #ffffff;
+      text-align: center;
+      transition: all 0.3s ease;
+      min-width: 300px;
+      max-width: 350px;
+      flex: 1 1 180px;
+    }
+  
+    .stat-item:hover {
+      box-shadow: inset 5px 5px 12px #bebebe, inset -5px -5px 12px #ffffff;
+      transform: translateY(-2px);
+    }
+  
+    .stat-item h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
+    }
+  
+    .stat-item p {
+      font-size: 28px;
+      font-weight: 600;
+      color: #444;
+      margin: 0;
+    }
+  
+    .note {
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 50px;
+    }
+  
+    @media (max-width: 900px) {
+      .stats-container {
+        justify-content: center;
+      }
+  
+      .stat-item {
+        flex: 1 1 45%;
+      }
+    }
+  
+    @media (max-width: 600px) {
+      .stat-item {
+        flex: 1 1 100%;
+        padding: 24px 16px;
+      }
+  
+      .stat-item p {
+        font-size: 22px;
+      }
+    }
+    .flatpickr-calendar {
+      background-color: #000000; /* Light background */
+      border: 1px solid #c3dafe;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      font-size: 10px; /* Change this to resize */
+      width: 310px;
+      height: 200px;     /* You can also use fixed width like 300px */
+      color: white;
+    }
+    .flatpickr-weekdays {
+      background: #000000;
+    }
+    .flatpickr-weekday {
+      color: white !important;
+      font-weight: 600;
+    }
+    .flatpickr-day {
+      width: 2.1em;
+      height: 2.2em;
+      line-height: 2.2em;
+      color: white !important; /* make text always white */
+      background: transparent;
+      border: 1px solid transparent;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .flatpickr-day:hover {
+      background-color: #6366f1;
+      color: white;
+      border: 1px solid #6366f1;
+    }
+
+.flatpickr-day.today {
+  background: #6366f1; /* Indigo for today */
+  color: white;
+}
+
+.flatpickr-day.selected {
+  background: #4f46e5; /* Highlight selected day */
+  color: white;
+}
+
+.flatpickr-months {
+  background: #e0e7ff;
+  color: #1e40af;
+}
+
+.flatpickr-day.today {
+  background: #6366f1;
+  color: white;
+}
+
+.flatpickr-day.selected {
+  background: #4f46e5;
+  color: white;
+}
+
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  color: #9ca3af !important; /* gray for other months */
+  opacity: 1;
+}
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.nextMonthDay:hover {
+  background-color: #6366f1;
+  color: white;
+}
+.flatpickr-days {
+      display: grid !important;
+      grid-template-columns: repeat(7, 1fr) !important;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-purple-100 via-indigo-100 to-white min-h-screen font-sans">
+  <nav class="bg-indigo-600 text-white shadow-lg p-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 w-full">
+        <h1 class="text-2xl font-bold">Girl’s Hostel-BiteBuddy</h1>
+        <a href="Main.html" class="text-white text-sm flex items-center gap-1">
+          ← Back to Home
+        </a>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <section class="mb-10">
+      <div class="bg-gradient-to-br from-white-500 via-indigo-200 to-purple-100 shadow-lg rounded-lg p-6">
+        <h2 class="text-4xl font-extrabold text-gray-800 mb-6 text-center">All Week's Hostel Menu</h2>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <!-- Calendar Section -->
+          <div class="flex items-center gap-3 bg-indigo-50 px-4 py-2 rounded-lg shadow-inner">
+            <span id="calendarTrigger" class="cursor-pointer flex items-center gap-2 text-indigo-700 hover:text-indigo-900 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H5a2 2 0 00-2 2v1h14V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H8V3a1 1 0 00-1-1zM3 9v6a2 2 0 002 2h10a2 2 0 002-2V9H3zm4 2a1 1 0 112 0 1 1 0 01-2 0zm3 0a1 1 0 112 0 1 1 0 01-2 0zm3 0a1 1 0 112 0 1 1 0 01-2 0z" clip-rule="evenodd" />
+              </svg>
+              <span id="selectedDateDisplay" class="text-sm font-medium"></span>
+            </span>
+            <input type="text" id="datePicker" class="absolute opacity-0" />
+          </div>
+          
+          <!-- Week Buttons -->
+          <div class="flex flex-wrap justify-center gap-3">
+            <button class="week-button px-5 py-2 bg-indigo-500 text-white rounded-full shadow hover:bg-indigo-600 transition" data-week="1">Week 1</button>
+            <button class="week-button px-5 py-2 bg-indigo-500 text-white rounded-full shadow hover:bg-indigo-600 transition" data-week="2">Week 2</button>
+            <button class="week-button px-5 py-2 bg-indigo-500 text-white rounded-full shadow hover:bg-indigo-600 transition" data-week="3">Week 3</button>
+            <button class="week-button px-5 py-2 bg-indigo-500 text-white rounded-full shadow hover:bg-indigo-600 transition" data-week="4">Week 4</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="menuContent1">
+      <div class="stats-container">
+        <!-- Week 1 Menu -->
+        <div data-day="Monday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Monday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Idli & Sambar</li>
+            <li><strong>Lunch:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Roti, Paneer Curry</li>
+          </ul>
+        </div>
+        <div data-day="Tuesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Tuesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Paratha & Curd</li>
+            <li><strong>Lunch:</strong> Rice, Rajma</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Roti, Chicken Curry</li>
+          </ul>
+        </div>
+        <div data-day="Wednesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Wednesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Poha & Tea</li>
+            <li><strong>Lunch:</strong> Veg Biryani, Raita</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Roti, Mixed Veg Curry</li>
+          </ul>
+        </div>
+        <div data-day="Thursday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Thursday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Upma & Coconut Chutney</li>
+            <li><strong>Lunch:</strong> Rice, Chole</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Chapati, Egg Curry</li>
+          </ul>
+        </div>
+        <div data-day="Friday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Friday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Aloo Puri</li>
+            <li><strong>Lunch:</strong> Fried Rice, Gobi Manchurian</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Roti, Dal Fry</li>
+          </ul>
+        </div>
+        <div data-day="Saturday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Saturday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Bread Omelette</li>
+            <li><strong>Lunch:</strong> Rice, Sambhar</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Roti, Chicken Masala</li>
+          </ul>
+        </div>
+        <div data-day="Sunday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Sunday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Masala Dosa</li>
+            <li><strong>Lunch:</strong> Rice, Butter Paneer</li>
+            <li><strong>Snacks:</strong> Rice, Dal, Aloo Gobi</li>
+            <li><strong>Dinner:</strong> Fried Rice & Veg Soup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="menuContent2" class="hidden">
+      <div class="stats-container">
+        <!-- Week 2 Menu -->
+        <div data-day="Monday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Monday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Dhokla & Mint Chutney</li>
+            <li><strong>Lunch:</strong> Rice, Dal Tadka, Bhindi Fry</li>
+            <li><strong>Snacks:</strong> Samosa</li>
+            <li><strong>Dinner:</strong> Roti, Palak Paneer</li>
+          </ul>
+        </div>
+        <div data-day="Tuesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Tuesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Chole Bhature</li>
+            <li><strong>Lunch:</strong> Rice, Kadhi Pakora</li>
+            <li><strong>Snacks:</strong> Bread Pakoda</li>
+            <li><strong>Dinner:</strong> Roti, Fish Curry</li>
+          </ul>
+        </div>
+        <div data-day="Wednesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Wednesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Vermicelli Upma</li>
+            <li><strong>Lunch:</strong> Lemon Rice, Papad</li>
+            <li><strong>Snacks:</strong> Cutlet</li>
+            <li><strong>Dinner:</strong> Roti, Mixed Dal</li>
+          </ul>
+        </div>
+        <div data-day="Thursday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Thursday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Sabudana Khichdi</li>
+            <li><strong>Lunch:</strong> Rice, Matar Paneer</li>
+            <li><strong>Snacks:</strong> Poha</li>
+            <li><strong>Dinner:</strong> Chapati, Egg Bhurji</li>
+          </ul>
+        </div>
+        <div data-day="Friday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Friday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Moong Dal Chilla</li>
+            <li><strong>Lunch:</strong> Jeera Rice, Dal Makhani</li>
+            <li><strong>Snacks:</strong> Dahi Vada</li>
+            <li><strong>Dinner:</strong> Roti, Baingan Bharta</li>
+          </ul>
+        </div>
+        <div data-day="Saturday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Saturday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Oats Porridge</li>
+            <li><strong>Lunch:</strong> Rice, Sambhar</li>
+            <li><strong>Snacks:</strong> Bhel Puri</li>
+            <li><strong>Dinner:</strong> Roti, Chicken Masala</li>
+          </ul>
+        </div>
+        <div data-day="Sunday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Sunday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Stuffed Paratha</li>
+            <li><strong>Lunch:</strong> Rice, Butter Paneer</li>
+            <li><strong>Snacks:</strong> Kachori</li>
+            <li><strong>Dinner:</strong> Noodles & Manchurian</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="menuContent3" class="hidden">
+      <div class="stats-container">
+        <!-- Week 3 Menu -->
+        <div data-day="Monday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Monday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Sabzi Sandwich</li>
+            <li><strong>Lunch:</strong> Rice, Dal Fry, Aloo Beans</li>
+            <li><strong>Snacks:</strong> Samosa</li>
+            <li><strong>Dinner:</strong> Roti, Paneer Butter Masala</li>
+          </ul>
+        </div>
+        <div data-day="Tuesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Tuesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Poha & Tea</li>
+            <li><strong>Lunch:</strong> Rice, Chana Masala</li>
+            <li><strong>Snacks:</strong> Bread Pakoda</li>
+            <li><strong>Dinner:</strong> Roti, Fish Curry</li>
+          </ul>
+        </div>
+        <div data-day="Wednesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Wednesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Idli & Sambar</li>
+            <li><strong>Lunch:</strong> Lemon Rice, Papad</li>
+            <li><strong>Snacks:</strong> Cutlet</li>
+            <li><strong>Dinner:</strong> Roti, Mixed Dal</li>
+          </ul>
+        </div>
+        <div data-day="Thursday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Thursday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Vermicelli Upma</li>
+            <li><strong>Lunch:</strong> Rice, Matar Paneer</li>
+            <li><strong>Snacks:</strong> Poha</li>
+            <li><strong>Dinner:</strong> Chapati, Egg Bhurji</li>
+          </ul>
+        </div>
+        <div data-day="Friday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Friday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Moong Dal Chilla</li>
+            <li><strong>Lunch:</strong> Jeera Rice, Dal Makhani</li>
+            <li><strong>Snacks:</strong> Dahi Vada</li>
+            <li><strong>Dinner:</strong> Roti, Baingan Bharta</li>
+          </ul>
+        </div>
+        <div data-day="Saturday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Saturday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Oats Porridge</li>
+            <li><strong>Lunch:</strong> Rice, Sambhar</li>
+            <li><strong>Snacks:</strong> Bhel Puri</li>
+            <li><strong>Dinner:</strong> Roti, Chicken Masala</li>
+          </ul>
+        </div>
+        <div data-day="Sunday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Sunday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Stuffed Paratha</li>
+            <li><strong>Lunch:</strong> Rice, Butter Paneer</li>
+            <li><strong>Snacks:</strong> Kachori</li>
+            <li><strong>Dinner:</strong> Noodles & Manchurian</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="menuContent4" class="hidden">
+      <div class="stats-container">
+        <!-- Week 4 Menu -->
+        <div data-day="Monday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Monday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Methi Paratha</li>
+            <li><strong>Lunch:</strong> Rice, Dal Tadka, Lauki Curry</li>
+            <li><strong>Snacks:</strong> Samosa</li>
+            <li><strong>Dinner:</strong> Roti, Paneer Butter Masala</li>
+          </ul>
+        </div>
+        <div data-day="Tuesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Tuesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Chole Bhature</li>
+            <li><strong>Lunch:</strong> Rice, Kadhi Pakora</li>
+            <li><strong>Snacks:</strong> Bread Pakoda</li>
+            <li><strong>Dinner:</strong> Roti, Fish Curry</li>
+          </ul>
+        </div>
+        <div data-day="Wednesday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Wednesday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Idli & Sambar</li>
+            <li><strong>Lunch:</strong> Lemon Rice, Papad</li>
+            <li><strong>Snacks:</strong> Cutlet</li>
+            <li><strong>Dinner:</strong> Roti, Mixed Dal</li>
+          </ul>
+        </div>
+        <div data-day="Thursday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Thursday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Vermicelli Upma</li>
+            <li><strong>Lunch:</strong> Rice, Matar Paneer</li>
+            <li><strong>Snacks:</strong> Poha</li>
+            <li><strong>Dinner:</strong> Chapati, Egg Bhurji</li>
+          </ul>
+        </div>
+        <div data-day="Friday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Friday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Moong Dal Chilla</li>
+            <li><strong>Lunch:</strong> Jeera Rice, Dal Makhani</li>
+            <li><strong>Snacks:</strong> Dahi Vada</li>
+            <li><strong>Dinner:</strong> Roti, Baingan Bharta</li>
+          </ul>
+        </div>
+        <div data-day="Saturday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Saturday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Oats Porridge</li>
+            <li><strong>Lunch:</strong> Rice, Sambhar</li>
+            <li><strong>Snacks:</strong> Bhel Puri</li>
+            <li><strong>Dinner:</strong> Roti, Chicken Masala</li>
+          </ul>
+        </div>
+        <div data-day="Sunday" class="day-card stat-item relative">
+          <h3 class="text-xl font-semibold text-indigo-600 mb-3">Sunday</h3>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li><strong>Breakfast:</strong> Stuffed Paratha</li>
+            <li><strong>Lunch:</strong> Rice, Butter Paneer</li>
+            <li><strong>Snacks:</strong> Kachori</li>
+            <li><strong>Dinner:</strong> Noodles & Manchurian</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-12 py-6 bg-indigo-600 text-white text-center">
+   <div class="text-center border-t text-xs text-white-500 py-4">
+      © 2025 SOLVITER. All rights reserved.
+      <span class="mx-2">|</span>
+      <a href="privacy.html" class="hover:text-black-600">Privacy Policy</a>
+      <span class="mx-2">|</span>
+      <a href="terms.html" class="hover:text-black-600">Terms of Use</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript for dynamic highlighting -->
+  <script>
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const today = new Date();
+    const todayName = days[today.getDay()];
+    const yesterdayName = days[(today.getDay() + 6) % 7];
+    const tomorrowName = days[(today.getDay() + 1) % 7];
+
+    // Set formatted date in navbar
+    const fullDate = today.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Function to get this week's date for a given weekday (week starts on Sunday)
+    function getDateFor(dayName) {
+      const dayIndex = days.indexOf(dayName);
+      const startOfWeek = new Date(today);
+      startOfWeek.setDate(today.getDate() - today.getDay()); // get Sunday of this week
+      const targetDate = new Date(startOfWeek);
+      targetDate.setDate(startOfWeek.getDate() + dayIndex);
+      return targetDate.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    }
+
+    // Enhance each card
+    document.querySelectorAll('.day-card').forEach(card => {
+      const day = card.dataset.day;
+      const cardDate = getDateFor(day);
+
+      // Wrap content in <a>
+      const inner = card.innerHTML;
+      card.innerHTML = `<a href="#" class="block h-full w-full">${inner}</a>`;
+
+      // Modify heading to include date
+      const heading = card.querySelector('h3');
+      heading.textContent = `${day} - ${cardDate}`;
+
+      // Label badges
+      const label = document.createElement('span');
+      label.classList.add('absolute', 'top-2', 'right-2', 'text-xs', 'text-white', 'px-2', 'py-1', 'rounded');
+
+      if (day === todayName) {
+        card.classList.add('ring-4', 'ring-indigo-400');
+        label.textContent = 'Today';
+        label.classList.add('bg-indigo-600');
+      } else if (day === yesterdayName) {
+        label.textContent = 'Yesterday';
+        label.classList.add('bg-yellow-500');
+      } else if (day === tomorrowName) {
+        label.textContent = 'Tomorrow';
+        label.classList.add('bg-green-500');
+      }
+
+      card.appendChild(label);
+    });
+  </script>
+
+  <!-- JavaScript for week button toggling -->
+  <script>
+    // Show selected week's menu
+    document.querySelectorAll('.week-button').forEach(button => {
+      button.addEventListener('click', function () {
+        const selectedWeek = this.getAttribute('data-week');
+        for (let i = 1; i <= 4; i++) {
+          const menu = document.getElementById('menuContent' + i);
+          if (menu) {
+            menu.classList.toggle('hidden', i != selectedWeek);
+          }
+        }
+        // Highlight the active week button
+        document.querySelectorAll('.week-button').forEach(btn => {
+          btn.classList.remove('ring-2', 'ring-offset-2', 'ring-indigo-500');
+        });
+        this.classList.add('ring-2', 'ring-offset-2', 'ring-indigo-500');
+      });
+    });
+  </script>
+    <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- Flatpickr Calendar Setup -->
+  <script>
+    flatpickr("#datePicker", {
+      dateFormat: "F j, Y",
+      onChange: function (selectedDates, dateStr, instance) {
+        if (selectedDates.length > 0) {
+          const selectedDate = selectedDates[0];
+          document.getElementById("selectedDateDisplay").textContent =
+            selectedDate.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+
+          const startOfYear = new Date(selectedDate.getFullYear(), 0, 1);
+          const days = Math.floor((selectedDate - startOfYear) / (24 * 60 * 60 * 1000));
+          let weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
+
+          // Ensure week is within 1–4 for hostel menu
+          weekNumber = ((weekNumber - 1) % 4) + 1;
+
+          for (let i = 1; i <= 4; i++) {
+            const menu = document.getElementById("menuContent" + i);
+            if (menu) {
+              menu.classList.toggle("hidden", i != weekNumber);
+            }
+          }
+          // Highlight the active week button
+          document.querySelectorAll('.week-button').forEach(btn => {
+            btn.classList.remove('ring-2', 'ring-offset-2', 'ring-indigo-500');
+          });
+          const activeBtn = document.querySelector(`.week-button[data-week="${weekNumber}"]`);
+          if (activeBtn) {
+            activeBtn.classList.add('ring-2', 'ring-offset-2', 'ring-indigo-500');
+          }
+        }
+      },
+      positionElement: document.getElementById("calendarTrigger"),
+      position: "below left",
+      defaultDate: new Date(),
+      onReady: function(selectedDates, dateStr, instance) {
+        // Set today's date display
+        const today = new Date();
+        document.getElementById("selectedDateDisplay").textContent =
+          today.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+
+        // Calculate current week number and show today's week menu
+        const startOfYear = new Date(today.getFullYear(), 0, 1);
+        const days = Math.floor((today - startOfYear) / (24 * 60 * 60 * 1000));
+        let weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
+        weekNumber = ((weekNumber - 1) % 4) + 1;
+
+        for (let i = 1; i <= 4; i++) {
+          const menu = document.getElementById("menuContent" + i);
+          if (menu) {
+            menu.classList.toggle("hidden", i != weekNumber);
+          }
+        }
+        // Highlight the active week button
+        document.querySelectorAll('.week-button').forEach(btn => {
+          btn.classList.remove('ring-2', 'ring-offset-2', 'ring-indigo-500');
+        });
+        const activeBtn = document.querySelector(`.week-button[data-week="${weekNumber}"]`);
+        if (activeBtn) {
+          activeBtn.classList.add('ring-2', 'ring-offset-2', 'ring-indigo-500');
+        }
+      }
+    });
+
+    document.getElementById("calendarTrigger").addEventListener("click", () => {
+      document.getElementById("datePicker")._flatpickr.open();
+    });
+  </script>
+</body>
+</html>
+
+    

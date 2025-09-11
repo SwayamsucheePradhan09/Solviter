@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solviter-FreshFold</title>
+    <link rel="icon" type="image/png" sizes="128x128" href="favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-blue-50 font-sans text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-blue-200 shadow-md p-4 text-center">
+    <h1 class="text-3xl font-bold text-blue-900"> Campus FreshFold</h1>
+<p class="text-blue-700 text-sm mb-4">Say goodbye to laundry stress. Book clean, fast, and affordable services — right from your hostel.</p>
+  </header>
+
+
+  <!-- Laundry Listings Heading -->
+  <div class="text-center mt-12">
+    <h2 class="text-3xl font-extrabold text-blue-800 tracking-wide uppercase">🧼 Trusted Laundry Partners</h2>
+    <p class="text-sm text-gray-600 mt-2">Quick, clean, and affordable services near you</p>
+  </div>
+
+  <!-- Laundry Services Cards -->
+  <section class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+    <div class="bg-white rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?laundry,washing" alt="Laundry 1" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-blue-800">Speedy Wash</h3>
+      <p class="text-sm text-gray-600 mb-2">Same-day wash & fold service for students in a hurry.</p>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm">View Details</button>
+    </div>
+
+    <div class="bg-white rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?dryer,clothes" alt="Laundry 2" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-blue-800">FreshPress Laundry</h3>
+      <p class="text-sm text-gray-600 mb-2">Affordable ironing and dry-cleaning for your formal wear.</p>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm">Book Now</button>
+    </div>
+
+    <div class="bg-white rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?laundry-service,clothes" alt="Laundry 3" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-blue-800">EcoClean Express</h3>
+      <p class="text-sm text-gray-600 mb-2">Eco-friendly detergents and fast pickup/drop services.</p>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm">See More</button>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="mt-12 px-6 text-center">
+    <h3 class="text-xl font-semibold text-blue-800 mb-4">What Students Say</h3>
+    <div class="italic text-gray-600 max-w-xl mx-auto">
+      “FreshFold saved me so much time during exam week. Highly recommended!” <br/>
+      <span class="block mt-2 font-bold text-blue-700">— Ananya S., 3rd Year CSE</span>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="mt-12 px-6">
+    <h3 class="text-xl font-bold text-blue-800 mb-2">Locate Services Around You</h3>
+    <div class="w-full h-64 rounded overflow-hidden shadow">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.216092065196!2d85.79765577556763!3d20.249870881211663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7a3b9692fff%3A0x87cd0a356bbc39ce!2sITER%2C%20Siksha%20&#39;O&#39;%20Anusandhan!5e0!3m2!1sen!2sin!4v1753764070670!5m2!1sen!2sin"
+      class="w-full h-full border-0" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- Review Submission Box -->
+  <section class="mt-12 px-6">
+    <h3 class="text-xl font-semibold text-blue-800 mb-4 text-center">Leave a Review</h3>
+    <form class="max-w-2xl mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <label class="block text-blue-700 text-sm font-bold mb-2" for="name">Name</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300" id="name" type="text" placeholder="Your Name">
+      </div>
+      <div class="mb-4">
+        <label class="block text-blue-700 text-sm font-bold mb-2" for="review">Your Review</label>
+        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-300" id="review" rows="4" placeholder="Write your review here..."></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" type="submit">
+          Submit Review
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-100 text-center text-sm text-blue-700 p-4 mt-10">
+<div class="text-center border-t text-xs text-white-500 py-4">
+      © 2025 SOLVITER. All rights reserved.
+      <span class="mx-2">|</span>
+      <a href="privacy.html" class="hover:text-black-600">Privacy Policy</a>
+      <span class="mx-2">|</span>
+      <a href="terms.html" class="hover:text-black-600">Terms of Use</a>
+    </div>
+    </footer>
+
+</body>
+</html>

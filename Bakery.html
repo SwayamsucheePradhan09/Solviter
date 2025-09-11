@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solviter-YumYard</title>
+  <link rel="icon" type="image/png" sizes="128x128" href="favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    const theme = localStorage.getItem("theme") || "light";
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+</head>
+<body class="bg-yellow-50 text-gray-800 font-sans transition-colors duration-500 dark:bg-gray-900 dark:text-gray-200">
+
+  <!-- Header -->
+  <header class="bg-yellow-300 text-yellow-900 shadow-md p-4 relative flex justify-between items-center dark:bg-gray-800 dark:text-white dark:backdrop-blur-md dark:bg-opacity-70">
+    <div>
+      <h1 class="text-3xl font-bold text-yellow-900 dark:text-yellow-400">YumYard 🍱 </h1>
+      <p class="text-sm text-yellow-800 dark:text-gray-400 mt-1">Bakeries & Restaurants around campus you must try!</p>
+    </div>
+    <a href="Main.html" class="text-yellow-900 dark:text-white text-sm ">← Back to Home</a>
+  </header>
+
+  <!-- Bakery Section Heading -->
+  <div class="text-center mt-12">
+    <h2 class="text-3xl font-extrabold text-yellow-800 dark:text-yellow-300 tracking-wide uppercase">Bakery Favorites</h2>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Handpicked sweet spots for your cravings</p>
+  </div>
+
+  <!-- Featured Bakeries -->
+  <section class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+    <!-- Bakery Card -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?cake,bakery" alt="Bakery 1" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-yellow-800 dark:text-yellow-400">Sweet Delights</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Fresh pastries, cupcakes, and more!</p>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm"><a href="favicon.png">View Menu</a></button>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?bread,bakery" alt="Bakery 2" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-yellow-800 dark:text-yellow-400">Bread & Butter</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">The best sourdough and croissants in town.</p>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">View More</button>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?donuts,bakery" alt="Bakery 3" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-yellow-800 dark:text-yellow-400">Donut Haven</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Colorful donuts with crazy flavors!</p>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">View More</button>
+    </div>
+  </section>
+
+  <!-- Restaurant Section Heading -->
+  <div class="text-center mt-16">
+    <h2 class="text-3xl font-extrabold text-yellow-800 dark:text-yellow-300 tracking-wide uppercase">🍽️ Must-Try Restaurants</h2>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">From comfort food to late-night meals</p>
+  </div>
+
+  <!-- Featured Restaurants -->
+  <section class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?restaurant,food" alt="Restaurant 1" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-yellow-800 dark:text-yellow-400">Campus Curry</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Known for their spicy biryani and student thalis.</p>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">View Menu</button>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?dining,meal" alt="Restaurant 2" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-yellow-800 dark:text-yellow-400">Tandoori Treat</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Famous for kebabs, butter naan, and late-night cravings.</p>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">View Menu</button>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition p-4">
+      <img src="https://source.unsplash.com/300x200/?noodles,restaurant" alt="Restaurant 3" class="rounded-md mb-3 w-full h-40 object-cover">
+      <h3 class="text-xl font-semibold text-yellow-800 dark:text-yellow-400">Asian Bowl</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Pan-Asian delicacies with cozy ambiance.</p>
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">View Menu</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-yellow-100 text-center text-sm text-yellow-700 p-4 mt-10 dark:bg-gray-800 dark:text-gray-400 dark:backdrop-blur-md dark:bg-opacity-70">
+    <div class="text-center border-t text-xs py-4 border-yellow-300 dark:border-gray-700">
+      © 2025 SOLVITER. All rights reserved.
+      <span class="mx-2">|</span>
+      <a href="privacy.html" class="hover:text-black-600 dark:hover:text-white">Privacy Policy</a>
+      <span class="mx-2">|</span>
+      <a href="terms.html" class="hover:text-black-600 dark:hover:text-white">Terms of Use</a>
+    </div>
+  </footer>
+
+</body>
+</html>

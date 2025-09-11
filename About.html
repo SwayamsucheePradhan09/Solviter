@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <title>Solviter-About</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="128x128" href="favicon.png">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-purple-200 via-pink-200 to-blue-200 text-gray-900 
+  dark:bg-gradient-to-r dark:from-blue-900 dark:via-blue-950 dark:to-black 
+  dark:text-gray-100 transition-colors duration-700 font-['Raleway']">
+
+  <canvas id="sky" class="fixed inset-0 z-0"></canvas>
+  <div class="relative z-10">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 shadow-md 
+dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-black">    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">SOLVITER</h1>
+      <a href="Main.html" class="text-white text-sm">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen grid grid-cols-1 md:grid-cols-2 items-center gap-10 px-6 py-16" data-aos="fade-up">
+    <!-- Left: Title & Paragraph -->
+    <div>
+      <h1 class="text-5xl font-extrabold leading-tight text-gray-900 dark:text-white font-[Space_Grotesk]">
+        Discover <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">SOLVITER</span>
+      </h1>
+      <p class="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-xl">
+        Hi! I'm the sole creator of SOLVITER — a project born out of my curiosity and love for solving real-world problems with code. From the design to the logic, every line of this platform is something I’ve built with care and purpose.
+      </p>
+    </div>
+    <!-- Right: Illustration Placeholder -->
+    <div class="flex justify-center items-center" data-aos="zoom-in">
+      <img src="Solviter.png" alt="Solviter Features" class="w-78 h-64 rounded-3xl shadow-lg object-contain">
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="about" class="py-20 px-6 text-center bg-white/70 dark:bg-transparent" data-aos="fade-up">
+    <h2 class="text-5xl font-bold text-gray-900 dark:text-white font-[Space_Grotesk] mb-6">Our Team</h2>
+    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">
+      Though it's a solo project now, the vision is community-driven. Here's a shoutout to contributors and future collaborators!
+    </p>
+    <div class="relative max-w-4xl mx-auto">
+      <div class="relative pl-6 space-y-12">
+        <!-- Team Member -->
+        <div class="relative" data-aos="fade-right">
+          <div class="absolute -left-11 top-12 w-10 h-10 rounded-md bg-white dark:bg-blue-950 border-2 border-purple-600 dark:border-blue-400 grid place-items-center shadow-md">
+            <span class="text-purple-600 dark:text-blue-400 text-xl">👤</span>
+          </div>
+            <div class="bg-white dark:bg-blue-950 p-6 rounded-xl shadow-xl hover:shadow-2xl">
+            <div class="flex flex-col md:flex-row items-center gap-6 text-left">
+              <img src="professional.jpg" alt="Swayamsuchee Pradhan" class="w-24 h-24 rounded-xl object-cover shadow-md mb-4 md:mb-0">
+              <div>
+                <h3 class="text-lg font-semibold">Swayamsuchee Pradhan</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-300">Front-End & Back-End Developer</p>
+                <div class="mt-3 flex gap-4">
+                  <a href="https://www.linkedin.com/in/swayamsuchee-pradhan-9980b4354/" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" class="h-6 hover:scale-110 transition">
+                  </a>
+                  <a href="https://github.com/SwayamsucheePradhan09" target="_blank">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" class="h-6 hover:scale-110 transition">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="py-20 px-6" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-5xl font-bold mb-12 text-gray-900 dark:text-white font-[Space_Grotesk]">Features</h2>
+      <div class="space-y-16">
+        <!-- Feature 1 -->
+        <div class="grid md:grid-cols-2 gap-10 items-center" data-aos="fade-right">
+          <div class="w-full h-48 rounded-2xl overflow-hidden shadow-lg">
+            <img src="starry-night-clouds.gif" alt="Starry Night" class="w-full h-58 object-cover">
+          </div>
+          <div>
+            <h3 class="font-semibold text-2xl">Starry Night Mode</h3>
+            <p>Enjoy a magical dark mode with a starry sky and meteors, bringing the night alive on your screen.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="grid md:grid-cols-2 gap-10 items-center" data-aos="fade-left">
+          <div class="order-2 md:order-1">
+            <h3 class="font-semibold text-2xl">Notification Alerts</h3>
+            <p>Stay updated with instant alerts about menus, events, and other important updates.</p>
+          </div>
+          <div class="order-1 md:order-2 w-full h-48 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center bg-white">
+            <img src="notifikasi-alert.gif" 
+                 alt="Notification Alerts" 
+                 class="max-h-full object-contain">
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="grid md:grid-cols-2 gap-10 items-center" data-aos="fade-right">
+          <div class="w-full h-48 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center bg-white">
+            <img src="facilities.gif" 
+                 alt="Daily Facilities Access" 
+                 class="w-full h-58 object-contain">
+          </div>
+          <div>
+            <h3 class="font-semibold text-2xl">Daily Facilities Access</h3>
+            <p>From laundry, mall, medical support, parks, PGs, rentals, salons, tailors, bakeries, and bookstores to everything you need, all in one place.</p>
+          </div>
+        </div>
+        <!-- Feature 4 -->
+        <div class="grid md:grid-cols-2 gap-10 items-center" data-aos="fade-left">
+          <div class="order-2 md:order-1">
+            <h3 class="font-semibold text-2xl">Smart Recommendations</h3>
+            <p>SOLVITER suggests nearby student-friendly places — from affordable food spots to essential services — making life easier for students.</p>
+          </div>
+         <div class="order-1 md:order-2 w-full h-48 rounded-2xl overflow-hidden shadow-lg flex items-center justify-center bg-white">
+           <video autoplay loop muted playsinline class=" w-full h-68 object-contain">
+         <source src="original.mp4" type="video/mp4">
+             </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 px-6 bg-gray-50 dark:bg-transparent" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-5xl font-bold text-center text-gray-900 dark:text-white font-[Space_Grotesk] mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="group bg-white dark:bg-blue-950 dark:text-white rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
+          <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-700 group-open:text-purple-600 dark:text-gray-300 dark:group-open:text-blue-300 transition-colors">
+            Is SOLVITER free to use?
+            <span class="text-xl transform transition-transform duration-300 group-open:rotate-45">×</span>
+          </summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes, SOLVITER is completely free for students, with no hidden charges.</p>
+        </details>
+        <details class="group bg-white dark:bg-blue-950 dark:text-white rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
+          <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-700 dark:text-gray-300 group-open:text-blue-300 transition-colors">
+            What facilities can I access through SOLVITER?
+            <span class="text-xl transform transition-transform duration-300 group-open:rotate-45">×</span>
+          </summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">You can check daily hostel menus, and find facilities like laundry, mall, medical, parks, PGs, rentals, salon, tailor, bakery and bookstore — all in one place.</p>
+        </details>
+        <details class="group bg-white dark:bg-blue-950 dark:text-white rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="300">
+          <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-700 dark:text-gray-300 group-open:text-blue-300 transition-colors">
+            Does SOLVITER work offline?
+            <span class="text-xl transform transition-transform duration-300 group-open:rotate-45">×</span>
+          </summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">No, you’ll need an internet connection to view the latest updates and access features.</p>
+        </details>
+        <details class="group bg-white dark:bg-blue-950 dark:text-white rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="400">
+          <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-700 dark:text-gray-300 group-open:text-blue-300 transition-colors">
+            Can I get notifications for important updates?
+            <span class="text-xl transform transition-transform duration-300 group-open:rotate-45">×</span>
+          </summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Yes, SOLVITER provides notification alerts for menus, events, and other important updates about college.</p>
+        </details>
+        <details class="group bg-white dark:bg-blue-950 dark:text-white rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="500">
+          <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-700 dark:text-gray-300 group-open:text-blue-300 transition-colors">
+            Can I suggest new features or report issues?
+            <span class="text-xl transform transition-transform duration-300 group-open:rotate-45">×</span>
+          </summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Absolutely! There’s a “Report/Contact Us” section where you can submit feedback and ideas.</p>
+        </details>
+        <details class="group bg-white dark:bg-blue-950 dark:text-white rounded-xl shadow-sm p-6 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="600">
+          <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-700 dark:text-gray-300 group-open:text-blue-300 transition-colors">
+            Does SOLVITER only work for my hostel/college?
+            <span class="text-xl transform transition-transform duration-300 group-open:rotate-45">×</span>
+          </summary>
+          <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">SOLVITER is designed for student communities and can be adapted for multiple hostels and our college.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl font-bold font-[Space_Grotesk] text-gray-900 dark:text-white">Contact Us</h2>
+        <p class="text-gray-600 dark:text-gray-300 mt-2 text-md">Let’s connect and answer your queries. We’re happy to help!</p>
+      </div>
+      <form class="bg-white dark:bg-blue-950 dark:text-white rounded-2xl shadow-2xl p-10 relative" data-aos="zoom-in">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div><input type="text" name="firstName" placeholder="First name" required class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 dark:bg-blue-950 dark:text-white"/></div>
+          <div><input type="text" name="lastName" placeholder="Last name" required class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 dark:bg-blue-950 dark:text-white"/></div>
+         </div>
+        <div><input type="email" name="email" placeholder="Email" required class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 gap-6 dark:bg-blue-950 dark:text-white mt-6"/></div>
+        <div><input type="tel" name="phone" placeholder="Phone number" class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 gap-6 dark:bg-blue-950 dark:text-white mt-6"/></div>
+        <div><textarea name="message" rows="5" placeholder="Write your message here..." required class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 gap-6 resize-none dark:bg-blue-950 dark:text-white mt-6"></textarea></div>
+        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition">Let’s talk</button>
+    
+      </form>
+    </div>
+  </section>
+
+  <!-- Report Issue Section -->
+  <section id="report" class="py-20 px-6 mt-5">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-gradient-to-r from-red-500 to-pink-500 p-12 rounded-3xl text-center" data-aos="zoom-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-white font-[Space_Grotesk]">Report an Issue</h2>
+        <p class="mt-3 text-md text-white/90">Found a bug or something that doesn’t look right? Help us improve by reporting it.</p>
+        <button class="inline-flex items-center justify-center px-8 py-3 mt-8 text-white font-semibold bg-white/10 hover:bg-white/20 transition-all duration-300 ease-in-out rounded-full shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-300">
+          <a href="Report.html">🚨 Report Now</a>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-center text-sm py-6 mt-20 
+    dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-black">
+    <div class="text-center border-t text-xs text-white-500 py-4">
+      © 2025 SOLVITER. All rights reserved.
+      <span class="mx-2">|</span>
+      <a href="privacy.html" class="hover:text-black-600 dark:text-gray-300">Privacy Policy</a>
+      <span class="mx-2">|</span>
+      <a href="terms.html" class="hover:text-black-600 dark:text-gray-300">Terms of Use</a>
+    </div>
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  });
+</script>
+
+<script>
+  (function() {
+    const CONFIG = {
+      starCount: 200,
+      meteorCount: 10,
+      meteorSpeed: 4,
+      meteorLength: 150,
+      meteorInterval: 2000,
+    };
+
+    const canvas = document.getElementById('sky');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let stars = [];
+    let meteors = [];
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createStars() {
+      stars = [];
+      for (let i = 0; i < CONFIG.starCount; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.2,
+          alpha: Math.random(),
+          alphaChange: 0.005 + Math.random() * 0.015,
+        });
+      }
+    }
+
+    function createMeteor() {
+      meteors.push({
+        x: random(width * 0.2, width * 0.8),
+        y: 0,
+        length: CONFIG.meteorLength,
+        speed: CONFIG.meteorSpeed,
+        alpha: 1,
+        angle: Math.PI / 4,
+      });
+    }
+
+    function drawStars() {
+      stars.forEach(star => {
+        star.alpha += star.alphaChange;
+        if (star.alpha <= 0 || star.alpha >= 1) star.alphaChange = -star.alphaChange;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fill();
+      });
+    }
+
+    function drawMeteors() {
+      meteors.forEach((meteor, index) => {
+        meteor.x += meteor.speed * Math.cos(meteor.angle);
+        meteor.y += meteor.speed * Math.sin(meteor.angle);
+        meteor.alpha -= 0.01;
+        if (meteor.alpha <= 0) {
+          meteors.splice(index, 1);
+          return;
+        }
+        const grad = ctx.createLinearGradient(meteor.x, meteor.y, meteor.x - meteor.length * Math.cos(meteor.angle), meteor.y - meteor.length * Math.sin(meteor.angle));
+        grad.addColorStop(0, `rgba(255, 255, 255, ${meteor.alpha})`);
+        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(meteor.x, meteor.y);
+        ctx.lineTo(meteor.x - meteor.length * Math.cos(meteor.angle), meteor.y - meteor.length * Math.sin(meteor.angle));
+        ctx.stroke();
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      if (document.documentElement.classList.contains('dark')) {
+        drawStars();
+        drawMeteors();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      createStars();
+    });
+
+    resize();
+    createStars();
+    animate();
+    setInterval(() => {
+      if (document.documentElement.classList.contains('dark') && meteors.length < CONFIG.meteorCount) {
+        createMeteor();
+      }
+    }, CONFIG.meteorInterval);
+  })();
+</script>
+
+</div>
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: false
+  });
+</script>
+</div>
+<script>
+  document.addEventListener("scroll", () => {
+    const line = document.getElementById("connectorLine");
+    const section = document.getElementById("about");
+    const collaboratorsBox = document.getElementById("collaboratorsBox");
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 4) {
+      line.style.height = "9rem"; // expand line when in view
+      setTimeout(() => {
+        collaboratorsBox.classList.remove("opacity-0");
+        collaboratorsBox.classList.add("opacity-100", "transition-opacity", "duration-500");
+      }, 500); // matches line growth duration
+    } else {
+      line.style.height = "0"; // collapse back
+      collaboratorsBox.classList.add("opacity-0");
+      collaboratorsBox.classList.remove("opacity-100");
+    }
+  });
+</script>
+</body>
+</html>
