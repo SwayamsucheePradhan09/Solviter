@@ -1,4 +1,4 @@
-<html lang="en" class="">
+<html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,54 +37,177 @@
       /* Meteor shower canvas background for dark mode */
       #sky { 
         position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh; 
-        z-index: 0; 
-        pointer-events: none; 
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 200vh;
+        z-index: 0;
+        pointer-events: none;
         display: none;
       }
       .dark #sky { display: block; }
-      /* Theme Switch Styles */
-      .slider {
-        position: absolute;
+      /* Animated Toggle Button */
+      .toggle {
+        position: relative;
+        width: 120px;
+        height: 50px;
+        border-radius: 999px;
+        border: none;
         cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(to right, #facc15, #fcd34d); /* yellow gradient for day */
-        border-radius: 9999px;
-        transition: background 0.6s ease;
+        background: linear-gradient(180deg,#cfe9ff,#e7f3ff);
+        box-shadow: inset 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.25);
+        overflow: hidden;
+        transition: background 0.5s ease;
       }
-      .dark .slider 
-       {
-        background: linear-gradient(to right, #4b5563, #1f2937); /* dark gray gradient for night */
+
+      .dark .toggle {
+        background: radial-gradient(circle at 20% 30%, #ffffff22 1px, transparent 2px),
+                    radial-gradient(circle at 70% 60%, #ffffff33 1px, transparent 2px),
+                    radial-gradient(circle at 40% 80%, #ffffff22 1px, transparent 2px),
+                    linear-gradient(180deg,#0f172a,#020617);
+        background-size: 120px 60px, 140px 70px, 160px 80px, cover;
       }
-      .slider::before {
-        content: "";
-        position: absolute;
-        height: 1.5rem;
-        width: 1.5rem;
-        left: 2px;
-        top: 2px;
-        background-color: #fff;
-        border-radius: 9999px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-        transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+
+      .toggle__indicator-wrapper{
+        position:absolute;
+        inset:0;
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+        padding:6px;
+        transition:justify-content 0.4s ease;
       }
-      input:checked + .slider::before {
-        transform: translateX(28px);
+
+      .dark .toggle__indicator-wrapper{
+        justify-content:flex-end;
       }
-      #themeIcon {
-        position: absolute;
-        top: 0.07rem;
-        left: 0.35rem;
-        z-index: 2;
-        pointer-events: none;
-        font-size: 1rem;
+
+      .toggle__indicator{
+        width:38px;
+        height:38px;
+        border-radius:50%;
+        background:#facc15;
+        box-shadow:0 0 10px rgba(250,204,21,.6),0 4px 10px rgba(0,0,0,0.35);
+        position:relative;
+        transition:background 0.5s ease;
       }
-      .dark #themeIcon {
-        left: 2.15rem;
-        top: 0.07rem;
+
+      .dark .toggle__indicator{
+        background:#e5e7eb;
+      }
+
+      /* moon craters */
+      .moon__crater{
+        position:absolute;
+        background:#9ca3af;
+        border-radius:50%;
+      }
+
+      .moon__crater:nth-child(1){ width:6px;height:6px; top:8px; left:10px; }
+      .moon__crater:nth-child(2){ width:5px;height:5px; top:18px; left:18px; }
+      .moon__crater:nth-child(3){ width:4px;height:4px; top:14px; left:6px; }
+
+      /* decorative clouds layer */
+      .sun::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        border-radius:999px;
+        background:radial-gradient(circle at 30% 40%,rgba(255,255,255,0.8),transparent 60%);
+        opacity:0.5;
+      }
+
+      .sun-icon { display:block; }
+      .moon-icon { display:none; }
+
+      .dark .sun-icon { display:none; }
+      .dark .moon-icon { display:block; }
+
+      /* SKY LAYERS */
+   .toggle-sky{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:999px;
+  pointer-events:none;
+  clip-path: inset(0 round 999px);
+}
+
+      /* CLOUDS */
+     .cloud{
+  position:absolute;
+  width:58px;
+  height:26px;
+  background:
+    radial-gradient(circle at 18px 16px, rgba(255,255,255,0.95) 14px, transparent 15px),
+    radial-gradient(circle at 36px 10px, rgba(255,255,255,0.95) 16px, transparent 17px),
+    radial-gradient(circle at 52px 16px, rgba(255,255,255,0.92) 14px, transparent 15px);
+  border-radius:30px;
+  filter:blur(0.6px);
+  opacity:0.85;
+  animation:cloudMove 18s linear infinite;
+  will-change:transform;
+}
+
+      .cloud-1{ bottom:12px; left:-60px; animation-delay:0s; }
+      .cloud-2{ bottom:18px; left:-60px; animation-delay:6s; }
+
+      @keyframes cloudMove{
+        0%{
+          transform:translateX(-80px);
+        }
+        100%{
+          transform:translateX(180px);
+        }
+      }
+
+      .cloud:nth-child(odd){ opacity:0.9 }
+      .cloud:nth-child(even){ opacity:0.75 }
+
+      .dark .cloud{ opacity:0; }
+
+      /* AIRPLANE */
+     .plane{
+  position:absolute;
+  top:18px;
+  left:-20px;
+  font-size:14px;
+  opacity:.8;
+  animation:planeFly 8s linear infinite;
+}
+
+      @keyframes planeFly{
+        0%{ transform:translateX(-20px); opacity:0; }
+        20%{ opacity:1; }
+        80%{ opacity:1; }
+        100%{ transform:translateX(120px); opacity:0; }
+      }
+
+      .dark .plane{ opacity:0; }
+
+      /* STARS */
+     .star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+}
+
+      .star-1{ top:10px; left:30px; }
+      .star-2{ top:18px; left:50px; animation-delay:.5s; }
+      .star-3{ top:8px; left:80px; animation-delay:1s; }
+
+      .dark .star{
+        opacity:1;
+        animation-play-state: running; /* stars twinkle only at night */
+      }
+
+      @keyframes twinkle{
+        from{ transform:scale(.6); opacity:.3 }
+        to{ transform:scale(1.4); opacity:1 }
       }
       body {
         transition: background 0.6s ease, color 0.6s ease, background-color 0.6s ease;
@@ -141,15 +264,11 @@
         const settingsBtn = document.getElementById("settingsBtn");
         const settingsSidebar = document.getElementById("settingsSidebar");
         const themeSwitch = document.getElementById("themeSwitch");
-        const themeIcon = document.getElementById("themeIcon");
   
         if (localStorage.getItem("theme") === "dark") {
           document.documentElement.classList.add("dark");
-          if (themeSwitch) themeSwitch.checked = true;
-          if (themeIcon) themeIcon.textContent = "🌖";
         } else {
-          if (themeSwitch) themeSwitch.checked = false;
-          if (themeIcon) themeIcon.textContent = "☀️";
+          document.documentElement.classList.remove("dark");
         }
   
         // Ensure theme preference is stored immediately on load
@@ -180,36 +299,28 @@
           }
         });
   
-        // Toggle theme
-        themeSwitch.addEventListener("change", () => {
-          if (themeSwitch.checked) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-            if (themeIcon) {
-              themeIcon.style.opacity = "0";
-              setTimeout(() => {
-                themeIcon.textContent = "🌖";
-                themeIcon.style.opacity = "1";
-              }, 200);
+        // Toggle theme using button
+        if (themeSwitch) {
+          themeSwitch.addEventListener("click", () => {
+            const isDark = document.documentElement.classList.contains("dark");
+
+            if (isDark) {
+              document.documentElement.classList.remove("dark");
+              localStorage.setItem("theme", "light");
+              themeSwitch.setAttribute("aria-pressed", "false");
+            } else {
+              document.documentElement.classList.add("dark");
+              localStorage.setItem("theme", "dark");
+              themeSwitch.setAttribute("aria-pressed", "true");
             }
-          } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            if (themeIcon) {
-              themeIcon.style.opacity = "0";
-              setTimeout(() => {
-                themeIcon.textContent = "☀️";
-                themeIcon.style.opacity = "1";
-              }, 200);
-            }
-          }
-        });
+          });
+        }
       });
     </script>
   
-  <body class="min-h-screen bg-gradient-to-b from-pink-100 via-purple-100 to-blue-100 text-gray-800 dark:from-gray-900 dark:via-gray-800 dark:to-black dark:text-gray-100 transition-colors duration-700">
+  <body class="overflow-x-hidden bg-gradient-to-b from-pink-100 via-purple-100 to-blue-100 text-gray-800 dark:from-gray-900 dark:via-gray-800 dark:to-black dark:text-gray-100 transition-colors duration-700">
     <canvas id="sky" class="fixed inset-0 z-0" width="1826" height="1978" style="width: 913px; height: 989px;"></canvas>
-    <div class="min-h-screen flex flex-col relative z-10">
+    <div class="flex flex-col relative z-10">
       <!-- Header + Hero merged -->
       <section class="relative w-full text-white overflow-hidden">
         <!-- Aurora Background -->
@@ -389,17 +500,46 @@
       </svg>
     </button>
     <!-- Sidebar -->
-  <div id="settingsSidebar" class="fixed right-0 top-0 h-full w-72 overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white shadow-lg transform transition-transform duration-300 z-40 translate-x-full">    <div class="p-4">
+  <div id="settingsSidebar" class="fixed right-0 top-0 h-full w-72 overflow-x-hidden bg-white dark:bg-gray-900 text-black dark:text-white shadow-lg transform transition-transform duration-300 z-40 translate-x-full">    <div class="p-4">
         <h2 class="text-lg font-bold mb-4">Settings</h2>
-      <div class="flex items-center justify-center gap-4 bg-gray-200 dark:bg-gray-700 rounded-full p-3 shadow-inner w-[265px]">
-    <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">DAY MODE</span>
-    <label class="relative inline-block w-14 h-7">
-      <input type="checkbox" id="themeSwitch" class="opacity-0 w-0 h-0">
-      <span class="slider absolute top-0 left-0 right-0 bottom-0 rounded-full transition"></span>
-      <span id="themeIcon" class="absolute left-1 top-1 text-lg transition-all duration-300" style="opacity: 1;">☀️</span>
-    </label>
-    <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">NIGHT MODE</span>
-  </div>
+      <div class="flex justify-center">
+        <div class="sidebar-toggle">
+          <button id="themeSwitch" class="toggle" aria-pressed="false" title="">
+            <span class="toggle-sky">
+              <span class="cloud cloud-1"></span>
+              <span class="cloud cloud-2"></span>
+              <span class="plane">✈</span>
+              <span class="star star-1"></span>
+              <span class="star star-2"></span>
+              <span class="star star-3"></span>
+            </span>
+            <span class="toggle__indicator-wrapper">
+              <span class="toggle__indicator flex items-center justify-center">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#facc15" width="20" height="20">
+                  <circle cx="12" cy="12" r="5" />
+                  <g stroke="#facc15" stroke-width="2" stroke-linecap="round">
+                    <line x1="12" y1="1" x2="12" y2="4"/>
+                    <line x1="12" y1="20" x2="12" y2="23"/>
+                    <line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/>
+                    <line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/>
+                    <line x1="1" y1="12" x2="4" y2="12"/>
+                    <line x1="20" y1="12" x2="23" y2="12"/>
+                    <line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/>
+                    <line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/>
+                  </g>
+                </svg>
+
+                <svg class="moon-icon hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                  <circle cx="12" cy="12" r="9" fill="#e5e7eb" />
+                  <circle cx="9" cy="10" r="2" fill="#9ca3af" />
+                  <circle cx="15" cy="14" r="1.6" fill="#9ca3af" />
+                  <circle cx="14" cy="8" r="1.2" fill="#9ca3af" />
+                </svg>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
       </div>
     </div>
     <script>
@@ -415,10 +555,11 @@
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
   
       function resize(){
+        const height = Math.max(document.body.scrollHeight, window.innerHeight);
         canvas.width = Math.floor(window.innerWidth * dpr);
-        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.height = Math.floor(height * dpr);
         canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
+        canvas.style.height = height + 'px';
       }
       window.addEventListener('resize', () => { resize(); initStars(); });
       resize();
@@ -489,7 +630,7 @@
       check();
     })();
     </script>
-<footer class="reveal relative w-full text-white rounded-t-3xl shadow-lg pt-10 pb-4 px-4 mt-12 z-10 bg-cover bg-center 
+<footer class="reveal relative w-full text-white rounded-t-3xl shadow-lg pt-10 pb-4 px-4 z-10 bg-cover bg-center 
 bg-[url('aurora-bg.jpg')] dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-black">
 
 <!-- Overlay -->
